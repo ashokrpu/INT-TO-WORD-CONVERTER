@@ -1,0 +1,75 @@
+Ekai = ["Zero", "One","Two", "Three", "Four", "Five", "Six", "Seven","Eight", "Nine","Ten", "Eleven", "Twelve", "Thirteen","Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen","Nineteen"]
+dahai = ["","","Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+Words = []
+
+# function for 2 digit code conversion    
+def two_digit(num):
+    if num < 20 and num != 00:
+        Words.append(Ekai[num])
+    else:
+        tens = num // 10
+        ones = num % 10
+        Words.append(dahai[tens])
+        if num !=0:
+            Words.append(Ekai[ones])
+
+#taking input from user    
+value = int(input("Etner your desired number: "))
+# convet int value to str and checking length
+value_str = str(value)                  
+value_str_len = len(value_str) 
+
+# dianose place value from one to nine
+first = value_str[-2:]          # for first digit till dahai   
+second = value_str[-3:-2]          # for hundred value 
+third = value_str[-5:-3]           # for thousand value
+fourth = value_str[-7:-5]          # for lakh value
+fifth = value_str[-9:-7]           # for carore value
+
+
+
+# if value longer
+
+if value_str_len >9:
+    Words.append("you have entered value more than carore")
+
+# for carore
+
+if value_str_len == 8 or value_str_len == 9:
+    fifth_a = int(fifth)
+    two_digit(fifth_a)
+    if fifth_a != 00:
+        Words.append("Carore")
+
+# for lakh
+if value_str_len > 6:
+    fourth_a = int(fourth)
+    two_digit(fourth_a)
+    if fourth_a != 00:
+        Words.append("Lakh")
+
+# for Thousand
+if value_str_len > 4:
+    third_a = int(third)
+    two_digit(third_a)
+    if third_a != 00:
+        Words.append("Thousand")
+
+# for Hundred
+if value_str_len > 2:
+    second_a = int(second)
+    two_digit(second_a )
+    if second_a != 00:
+        Words.append("Hundred")
+
+# for first two digit
+if value_str_len >0:
+    first_a = int(first)
+    two_digit(first_a)
+
+print(" ".join(Words))
+
+
+
+  
+
