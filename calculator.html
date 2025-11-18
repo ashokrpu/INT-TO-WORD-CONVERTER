@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: rgb(27, 17, 4);
+        height: 400px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 3px 4px 5px rgb(9, 1, 17);
+      }
+      .box {
+        width: 90%;
+        height: 90%;
+        background-color: rgb(11, 118, 211);
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .screen {
+        background-color: rgb(219, 236, 236);
+        width: 90%;
+        height: 20%;
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: larger;
+        display: flex;
+        padding: 5px;
+        text-align: right;
+      }
+      .buttons {
+        background-color: rgb(3, 0, 0);
+        width: 90%;
+        height: 73%;
+        display: flex;
+        padding: 5px;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      button {
+        width: 40px;
+        height: 40px;
+        background-color: black;
+        box-shadow: 2px 3px 4px whitesmoke;
+        border: 3px whitesmoke;
+        border-radius: 2px;
+        color: rgb(219, 223, 226);
+        text-shadow: 2px 3px 4px whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 5px;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <input type="text" class="screen" placeholder="0" />
+        <div class="buttons">
+          <button>AC</button>
+          <button>DEL</button>
+          <button>%</button>
+          <button>/</button>
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button>X</button>
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button>-</button>
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>+</button>
+          <button>0</button>
+          <button>00</button>
+          <button>.</button>
+          <button>=</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll("button");
+      const screen = document.querySelector(".screen");
+      let BtnVal = "";
+      let val = Array.from(buttons);
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          if (e.target.innerHTML == "=") {
+            BtnVal = eval(BtnVal);
+            screen.value = BtnVal;
+          } else if (e.target.innerHTML == "AC") {
+            BtnVal = "";
+            screen.value = BtnVal;
+          } else if (e.target.innerHTML == "DEL") {
+            BtnVal = BtnVal.substring(0, BtnVal.length - 1);
+            screen.value = BtnVal;
+          } else if (e.target.innerHTML == "X") {
+            BtnVal += "*";
+            screen.value = BtnVal;
+          } else if (e.target.innerHTML == "%") {
+            BtnVal += "/100";
+            screen.value = eval(BtnVal);
+          } else {
+            BtnVal += e.target.innerHTML;
+            screen.value = BtnVal;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
