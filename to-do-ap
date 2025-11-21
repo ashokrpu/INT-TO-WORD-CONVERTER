@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo_list</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen">
+    <div class="w-[320px] overflow-y-auto bg-red-500 shadow-md rounded-2xl p-5 box">
+        <div>
+        <input class="rounded-xl p-1" type="text" name="" id="input">
+        <button id="save" class="bg-blue-500 p-1 m-2 rounded-lg text-white font-bold m-10" style="text-shadow: 2px 3px 4px; box-shadow: 2px 3px 4px rgb(49, 5, 5);">Save</button>
+        <div id="todo_list" class="w-[100%]"></div>
+    </div>
+   
+    </div>
+    
+    <script>
+        const todo_list = document.querySelector('#todo_list');
+        const input = document.querySelector('#input');
+        const save = document.querySelector('#save');
+        let inputText = "";
+        let editing = "";
+
+        save.addEventListener('click',()=>{
+            inputText = input.value.trim();                     
+            if (inputText.length <= 0) {alert('Please input something');
+                return;
+            }
+            else if(editing){
+                editing.innerText = input.value;
+                editing = null;
+                input.value = "";
+                return;
+            }
+        // creating element
+        let div = document.createElement('div');   
+        let h1 = document.createElement('h1');
+        let editBtn = document.createElement('button');
+        let delBtn = document.createElement('button');
+        
+        // adding sytle
+        div.classList.add("flex","flex-wrap", "justify-between","w-[270px]", "bg-sky-300","rounded-lg","bg-white/20", "backdrop-blur-sm","my-2", "p-2", "gap-1" );
+        h1.classList.add("text-pink-700", "font-bold","p-2", "flex-1","break-words");
+        delBtn.classList.add("text-black", "font-bold","p-1","m-1","bg-pink-500", "rounded-md","p-1" ,"h-9");
+        editBtn.classList.add("text-black", "font-bold","p-1","m-1","bg-green-500", "rounded-md","p-1", "h-9");
+        // adding text        
+        h1.innerText = inputText;
+        editBtn.innerText = "edit"; 
+        delBtn.innerText = "Del";   
+          
+        // append node 
+        div.appendChild(h1);        
+        div.appendChild(editBtn);
+        div.appendChild(delBtn);
+        todo_list.appendChild(div); 
+         // delete element 
+        delBtn.addEventListener('click',()=>{
+            div.remove();})   
+            
+        editBtn.addEventListener('click',()=>{
+            input.value = h1.innerText;
+            editing = h1;          
+        })
+        input.value = "";  
+        });
+       
+        
+        
+        
+    </script>
+</body>
+</html>
